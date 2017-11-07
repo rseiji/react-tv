@@ -50,18 +50,9 @@ function setInitialDOMProperties(
     }
     let nextProp = nextProps[propKey];
     if (propKey === STYLE) {
-      // Relies on `updateStylesByID` not mutating `styleUpdates`.
-      // CSSPropertyOperations.setValueForStyles(domElement, nextProp);
+      // noop
     } else if (propKey === CHILDREN) {
-      if (typeof nextProp === 'string') {
-        // Avoid setting initial textContent when the text is empty.
-        var canSetTextContent = tag !== 'textarea' || nextProp !== '';
-        if (canSetTextContent) {
-          setTextContent(domElement, escapeTextContentForBrowser(nextProp));
-        }
-      } else if (typeof nextProp === 'number') {
-        setTextContent(domElement, escapeTextContentForBrowser('' + nextProp));
-      }
+      // noop
     } else if (isCustomComponentTag) {
       DOMPropertyOperations.setValueForAttribute(domElement, propKey, nextProp);
     } else if (nextProp != null) {
